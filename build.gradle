@@ -20,6 +20,18 @@ allprojects {
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
     }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
+        doFirst {
+            println("Compiling kotlin with Java version: " + JavaVersion.current())
+        }
+    }
+
+    tasks.withType(JavaCompile) {
+        doFirst {
+            println("Compiling java with Java version: " + JavaVersion.current())
+        }
+    }
 }
 
 task clean(type: Delete) {
